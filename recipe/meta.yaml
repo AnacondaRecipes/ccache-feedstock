@@ -17,38 +17,23 @@ package:
 source:
   url: https://github.com/{{ fork }}/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: dbf139ff32031b54cb47f2d7983269f328df14b5a427882f89f7721e5c411b7e
-  folder: ccache.{{ fork }}
-  # path: W:/src/ccache.{{ fork }}
-  # path_via_symlink: True
-#  git_url: https://github.com/{{ fork }}/{{ name }}.git  # [win]
-#  git_tag: 7931393c825cd4e9a161ffd405d0756e7e628f0e  # [win]
-#  patches:
-#    - 0001-CMAKE_VERBOSE_MAKEFILE_ON.patch  # [win]
-#    - 0002-Use-Unix-code-for-find_executable_in_path.patch  # [win]
 
 build:
   number: 0
+  skip: true  # [win]
 
 requirements:
   build:
-    - {{ compiler('c') }}  # [not win]
-    - m2w64-toolchain  # [win]
-    - make  # [not win]
-{% if fork == "cristianadam" %}
+    - gnuconfig  # [unix]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - cmake
-    - ninja
-{% else %}
-    - {{ p }}make
-    - {{ p }}base  # [win]
-    - {{ p }}filesystem  # [win]
-{% endif %}
-    - git  # [win]
-    - patch  # [not win]
-    - m2-patch  # [win]
+    - make
+    # The test suite assumes GNU sed and find
+    - sed
+    - findutils  # [osx]
   host:
-    - zlib  # [not win]
-  run:  # [win]
-    - m2w64-gcc-libs  # [win]
+    - zstd
 
 test:
   requires:
@@ -71,17 +56,17 @@ test:
     # We could consider some tests to see that we actually cache compilations!
 
 about:
-  home: https://ccache.samba.org/
-  license: GPL-3.0
+  home: https://ccache.dev/
+  license: GPL-3.0-only
   license_family: GPL
-  license_file: ccache.{{ fork }}/GPL-3.0.txt
-  summary: 'A compiler cache'
+  license_file: GPL-3.0.txt
+  summary: A compiler cache
 
   description: |
     ccache is a compiler cache. It speeds up recompilation by caching
     previous compilations and detecting when the same compilation is
     being done again. Supported languages are C, C++, Objective-C and Objective-C++.
-  doc_url: https://ccache.samba.org/manual.html
+  doc_url: https://ccache.dev/manual/latest.html
   dev_url: https://github.com/ccache/ccache
 
 extra:
