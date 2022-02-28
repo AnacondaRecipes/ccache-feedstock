@@ -1,10 +1,10 @@
 # {% set name = "ccache" %}
-# {% set version = "3.7.9" %}  # [not win]
+# {% set version = "4.6" %}  # [not win]
 # {% set fork = "ccache" %}  # [not win]
-# {% set version = "3.7.1" %}  # [win]
+# {% set version = "4.6" %}  # [win]
 # {% set fork = "cristianadam" %}  # [win]
 {% set name = "ccache" %}
-{% set version = "3.7.9" %}
+{% set version = "4.6" %}
 {% set fork = "ccache" %}
 
 {% set p = 'm2-' if win else '' %}
@@ -16,7 +16,7 @@ package:
 
 source:
   url: https://github.com/{{ fork }}/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 92838e2133c9e704fdab9ee2608dad86c99021278b9ac47d065aa8ff2ea8ce36
+  sha256: 73a1767ac6b7c0404a1a55f761a746d338e702883c7137fbf587023062258625
   folder: ccache.{{ fork }}
   # path: W:/src/ccache.{{ fork }}
   # path_via_symlink: True
