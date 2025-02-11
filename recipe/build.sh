@@ -1,15 +1,19 @@
 #!/bin/bash
+mkdir build
+cd build
 
-if [[ ${target_platform} == osx-64 ]]; then
-  export SDKROOT=${CONDA_BUILD_SYSROOT}
+if [ "$target_platform" = "osx-64" ]; then
+    CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
 fi
-./ccache.ccache/configure --prefix=$PREFIX
-make -j${CPU_COUNT}
-if [[ ${target_platform} != osx-64 ]]; then
-  # Disabling macOS due to:
-  # Test suite:     debug_prefix_map
-  # Test case:      Multiple -fdebug-prefix-map
-  # Failure reason: Relocation (name) not found in test.o
-  make check
-fi
-make install
+
+cmake \
+    ${CMAKE_ARGS} \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=${PREFIX} \
+    -DENABLE_TESTING=OFF \
+    -DWARNINGS_AS_ERRORS=FALSE \
+    -GNinja \
+    ${SRC_DIR}
+
+ninja
+ninja install
