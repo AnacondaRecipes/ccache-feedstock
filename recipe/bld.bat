@@ -7,11 +7,12 @@ cmake -GNinja ^
     -DHIREDIS_FROM_INTERNET=OFF ^
     -DZSTD_FROM_INTERNET=OFF ^
     -DCMAKE_BUILD_TYPE=Release ^
-    -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
-    -DENABLE_TESTING=ON
+    -DENABLE_TESTING=ON ^
+    -DENABLE_DOCUMENTATION=OFF ^
+    -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX%
 
 ninja
 ninja install
 
 cd unittest
-./unittest
+.\unittest

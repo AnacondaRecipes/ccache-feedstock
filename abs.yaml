@@ -1,0 +1,3 @@
+channels:
+  - https://staging.continuum.io/prefect/fs/doctest-feedstock/pr2/5336255
+  - https://staging.continuum.io/prefect/fs/libhiredis-feedstock/pr1/9e34cbd
