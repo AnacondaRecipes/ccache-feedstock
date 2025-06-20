@@ -4,8 +4,7 @@ cd build
 cmake -GNinja ^
     %CMAKE_ARGS% ^
     %SRC_DIR% ^
-    -DHIREDIS_FROM_INTERNET=OFF ^
-    -DZSTD_FROM_INTERNET=OFF ^
+    -DDEPS=LOCAL ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DENABLE_TESTING=ON ^
     -DENABLE_DOCUMENTATION=OFF ^
