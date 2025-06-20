@@ -8,16 +8,12 @@ package:
 source:
   url: https://github.com/{{ name }}/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: 28a407314f03a7bd7a008038dbaffa83448bc670e2fc119609b1d99fb33bb600
-  patches:
-    - patches/0001-unvendor-doctest-and-hiredis.patch
 
 build:
   number: 0
 
 requirements:
   build:
-    - patch  # [not win]
-    - m2-patch  # [win]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
