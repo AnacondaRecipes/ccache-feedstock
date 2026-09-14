@@ -22,7 +22,7 @@ requirements:
     - ninja-base
   host:
     - fmt {{ fmt }}
-    - doctest 2.4.11
+    - doctest 2
     - libhiredis 1.3.0
     - zstd {{ zstd }}
     - xxhash {{ xxhash }}
