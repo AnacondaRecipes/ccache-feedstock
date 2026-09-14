@@ -10,7 +10,7 @@ source:
   sha256: 28a407314f03a7bd7a008038dbaffa83448bc670e2fc119609b1d99fb33bb600
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
@@ -26,10 +26,10 @@ requirements:
     - libhiredis 1.3.0
     - zstd {{ zstd }}
     - xxhash {{ xxhash }}
-    - ucrt 10.0.20348.0  # [win]
+    - ucrt 10.0.20348.0  # [win64]
   run:
     - libhiredis
-    - ucrt  # [win]
+    - ucrt  # [win64]
     
 test:
   commands:
